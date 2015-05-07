@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1BAFECD0-0A52-403E-83EE-AC495CDA0235</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyPongClone</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>388DD37082FFC7AE58ED965A0735629D1F587457</key>
+		<string>github.com:agmcleod/pongclone.git</string>
+		<key>428A33E92925587EEEFAF4887E32420544D96C78</key>
+		<string>github.com:agmcleod/learningc.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyPongClone.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>388DD37082FFC7AE58ED965A0735629D1F587457</key>
+		<string>../..</string>
+		<key>428A33E92925587EEEFAF4887E32420544D96C78</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:agmcleod/pongclone.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>388DD37082FFC7AE58ED965A0735629D1F587457</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>428A33E92925587EEEFAF4887E32420544D96C78</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>388DD37082FFC7AE58ED965A0735629D1F587457</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyPongClone</string>
+		</dict>
+	</array>
+</dict>
+</plist>
