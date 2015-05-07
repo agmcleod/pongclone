@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
-class Game;
 
 #include "GameObject.h"
 
@@ -21,11 +20,13 @@ public:
         m_rect = sf::RectangleShape(sf::Vector2f(30, 60));
         m_rect.setPosition(x, y);
         m_rect.setFillColor(sf::Color::White);
+        m_speed = 200.0f;
     }
     virtual void render(sf::RenderWindow &window);
-    virtual void update();
+    virtual void update(InputManager &im, float time);
 private:
     sf::RectangleShape m_rect;
+    float m_speed;
 };
 
 #endif /* defined(__MyPongClone__Paddle__) */

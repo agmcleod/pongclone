@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
+#include "InputManager.h"
 
 class GameObject;
 
@@ -19,7 +20,7 @@ public:
     void initGame();
 private:
     std::vector<GameObject *> gameObjects;
-    
+    InputManager input;
 };
 
 #endif /* defined(__MyPongClone__Game__) */

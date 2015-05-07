@@ -7,3 +7,15 @@
 //
 
 #include "InputManager.h"
+
+void InputManager::captureKey(sf::Keyboard::Key &key) {
+    m_actions[m_map[key]] = true;
+}
+
+bool InputManager::isActionPressed(std::string action) {
+    return m_actions[action];
+}
+
+void InputManager::releaseKey(sf::Keyboard::Key &key) {
+    m_actions[m_map[key]] = false;
+}

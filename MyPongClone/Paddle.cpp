@@ -11,3 +11,12 @@
 void Paddle::render(sf::RenderWindow &window) {
     window.draw(m_rect);
 }
+
+void Paddle::update(InputManager &im, float time) {
+    if (im.isActionPressed("up")) {
+        m_rect.move(0, -m_speed * time);
+    }
+    if (im.isActionPressed("down")) {
+        m_rect.move(0, m_speed * time);
+    }
+}

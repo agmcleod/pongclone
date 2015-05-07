@@ -11,16 +11,26 @@
 
 #include <stdio.h>
 #include <map>
+#include <utility>
 #include <SFML/Graphics.hpp>
 
 class InputManager {
 public:
     InputManager() {
-        map.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Key::W, "up"));
-        map.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Key::S, "down"));
+        m_map.insert(std::make_pair(sf::Keyboard::Key::W, "up"));
+        m_map.insert(std::make_pair(sf::Keyboard::Key::S, "down"));
+        
+        m_actions.insert(std::make_pair("up", false));
+        m_actions.insert(std::make_pair("down", false));
     }
+    
+    void captureKey(sf::Keyboard::Key &key);
+    void releaseKey(sf::Keyboard::Key &key);
+    
+    bool isActionPressed(std::string action);
 private:
-    std::map<sf::Keyboard::Key, std::string> map;
+    std::map<sf::Keyboard::Key, std::string> m_map;
+    std::map<std::string, bool> m_actions;
 };
 
 #endif /* defined(__MyPongClone__InputManager__) */

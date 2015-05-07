@@ -15,6 +15,10 @@ void Game::initGame() {
     Paddle p(10.0f, 300.0f);
     gameObjects.push_back(&p);
     
+    input = InputManager();
+    
+    sf::Clock clock = sf::Clock();
+    
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -26,15 +30,25 @@ void Game::initGame() {
                 if (event.key.code == sf::Keyboard::Escape) {
                     window.close();
                 }
+                else {
+                    input.captureKey(event.key.code);
+                }
+            }
+            
+            if (event.type == sf::Event::KeyReleased) {
+                input.releaseKey(event.key.code);
             }
         }
         
         window.clear();
         
+        const float time = clock.getElapsedTime().asSeconds();
         
         for (GameObject* object : gameObjects) {
-            object->update();
+            object->update(input, time);
         }
+        
+        clock.restart();
         
         for (GameObject* object : gameObjects) {
             object->render(window);
