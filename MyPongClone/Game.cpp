@@ -6,18 +6,24 @@
 //  Copyright (c) 2015 Aaron McLeod. All rights reserved.
 //
 
+#include <iostream>
 #include "Game.h"
 #include "Paddle.h"
+#include "Ball.h"
 
 void Game::initGame() {
+    srand(time(0));
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     
     Paddle p(10.0f, 300.0f);
     gameObjects.push_back(&p);
+    Ball b;
+    gameObjects.push_back(&b);
     
     input = InputManager();
     
     sf::Clock clock = sf::Clock();
+    sf::FloatRect intersection;
     
     while (window.isOpen()) {
         sf::Event event;
@@ -46,6 +52,18 @@ void Game::initGame() {
         
         for (GameObject* object : gameObjects) {
             object->update(input, time);
+        }
+        
+        sf::FloatRect *paddleBounds = p.getBounds();
+        sf::FloatRect *ballBounds = b.getBounds();
+        
+        if (paddleBounds->intersects(*ballBounds, intersection)) {
+            if (intersection.width > intersection.height) {
+                b.changeYDirection();
+            }
+            else {
+                b.changeXDirection();
+            }
         }
         
         clock.restart();

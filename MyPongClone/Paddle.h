@@ -17,14 +17,17 @@
 class Paddle : public GameObject {
 public:
     Paddle(float x, float y) {
-        m_rect = sf::RectangleShape(sf::Vector2f(30, 60));
-        m_rect.setPosition(x, y);
+        bounds = sf::FloatRect(x, y, 30, 60);
+        m_rect = sf::RectangleShape(sf::Vector2f(bounds.width, bounds.height));
+        m_rect.setPosition(bounds.left, bounds.top);
         m_rect.setFillColor(sf::Color::White);
-        m_speed = 200.0f;
+        m_speed = 400.0f;
     }
+    sf::FloatRect * getBounds();
     virtual void render(sf::RenderWindow &window);
     virtual void update(InputManager &im, float time);
 private:
+    sf::FloatRect bounds;
     sf::RectangleShape m_rect;
     float m_speed;
 };

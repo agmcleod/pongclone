@@ -22,6 +22,8 @@
 		9ABD7FC21AFAEA2F00AB17B3 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FC01AFAEA2F00AB17B3 /* GameObject.cpp */; };
 		9ABD7FC51AFAED0400AB17B3 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FC31AFAED0400AB17B3 /* Game.cpp */; };
 		9ABD7FC81AFAF91E00AB17B3 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FC61AFAF91E00AB17B3 /* InputManager.cpp */; };
+		9ABD7FCD1AFC4A2000AB17B3 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FCC1AFC4A2000AB17B3 /* Ball.cpp */; };
+		9ABD7FD01AFC4D0C00AB17B3 /* CollisionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FCE1AFC4D0C00AB17B3 /* CollisionManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,10 @@
 		9ABD7FC41AFAED0400AB17B3 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		9ABD7FC61AFAF91E00AB17B3 /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputManager.cpp; sourceTree = "<group>"; };
 		9ABD7FC71AFAF91E00AB17B3 /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
+		9ABD7FCA1AFC3F1500AB17B3 /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		9ABD7FCC1AFC4A2000AB17B3 /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
+		9ABD7FCE1AFC4D0C00AB17B3 /* CollisionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionManager.cpp; sourceTree = "<group>"; };
+		9ABD7FCF1AFC4D0C00AB17B3 /* CollisionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,10 @@
 				9ABD7FC41AFAED0400AB17B3 /* Game.h */,
 				9ABD7FC61AFAF91E00AB17B3 /* InputManager.cpp */,
 				9ABD7FC71AFAF91E00AB17B3 /* InputManager.h */,
+				9ABD7FCA1AFC3F1500AB17B3 /* Ball.h */,
+				9ABD7FCC1AFC4A2000AB17B3 /* Ball.cpp */,
+				9ABD7FCE1AFC4D0C00AB17B3 /* CollisionManager.cpp */,
+				9ABD7FCF1AFC4D0C00AB17B3 /* CollisionManager.h */,
 			);
 			path = MyPongClone;
 			sourceTree = "<group>";
@@ -216,8 +226,10 @@
 				9A8364441AF9C02900541108 /* main.cpp in Sources */,
 				9ABD7FC81AFAF91E00AB17B3 /* InputManager.cpp in Sources */,
 				9ABD7FBF1AFAE4B200AB17B3 /* Paddle.cpp in Sources */,
+				9ABD7FD01AFC4D0C00AB17B3 /* CollisionManager.cpp in Sources */,
 				9A8364411AF9C02900541108 /* ResourcePath.mm in Sources */,
 				9ABD7FC51AFAED0400AB17B3 /* Game.cpp in Sources */,
+				9ABD7FCD1AFC4A2000AB17B3 /* Ball.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

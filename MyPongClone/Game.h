@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
+#include <ctime>
+#include <cstdlib>
 #include "InputManager.h"
 
 class GameObject;
