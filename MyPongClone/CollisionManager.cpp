@@ -8,6 +8,21 @@
 
 #include "CollisionManager.h"
 
-void CollisionManager::correctOverlap(sf::FloatRect *rectone, sf::FloatRect *recttwo, sf::Vector2f *velocity) {
-    
+void CollisionManager::correctOverlap(sf::FloatRect *rectone, sf::FloatRect *intersection, sf::Vector2f *velocity, sf::Vector2f *correction) {
+    if (intersection->width > intersection->height) {
+        if (velocity->y < 0) {
+            correction->y = velocity->y;
+        }
+        else if (velocity->y > 0) {
+            correction->y = -velocity->y;
+        }
+    }
+    else {
+        if (velocity->x < 0) {
+            correction->x = velocity->x;
+        }
+        else if (velocity->x > 0) {
+            correction->x = -velocity->x;
+        }
+    }
 }

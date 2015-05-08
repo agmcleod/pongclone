@@ -20,6 +20,16 @@ sf::FloatRect * Ball::getBounds() {
     return &bounds;
 }
 
+sf::Vector2f * Ball::getSpeed() {
+    return &m_speed;
+}
+
+void Ball::move(sf::Vector2f *moveBy) {
+    bounds.left += moveBy->x;
+    bounds.top += moveBy->y;
+    m_rect.setPosition(bounds.left, bounds.top);
+}
+
 void Ball::render(sf::RenderWindow &window) {
     window.draw(m_rect);
 }

@@ -44,6 +44,8 @@ public:
     void changeXDirection();
     void changeYDirection();
     sf::FloatRect * getBounds();
+    sf::Vector2f * getSpeed();
+    void move(sf::Vector2f *moveBy);
     virtual void render(sf::RenderWindow &window);
     virtual void update(InputManager &im, float time);
 private:

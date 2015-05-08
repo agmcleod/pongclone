@@ -10,6 +10,7 @@
 #include "Game.h"
 #include "Paddle.h"
 #include "Ball.h"
+#include "CollisionManager.h"
 
 void Game::initGame() {
     srand(time(0));
@@ -24,6 +25,9 @@ void Game::initGame() {
     
     sf::Clock clock = sf::Clock();
     sf::FloatRect intersection;
+    sf::Vector2f correction;
+    
+    CollisionManager collisionManger;
     
     while (window.isOpen()) {
         sf::Event event;
@@ -64,6 +68,9 @@ void Game::initGame() {
             else {
                 b.changeXDirection();
             }
+            
+            collisionManger.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);
+            
         }
         
         clock.restart();

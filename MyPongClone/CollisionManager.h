@@ -14,7 +14,7 @@
 
 class CollisionManager {
 public:
-    void correctOverlap(sf::FloatRect *rectone, sf::FloatRect *recttwo, sf::Vector2f *velocity);
+    void correctOverlap(sf::FloatRect *rectone, sf::FloatRect *intersection, sf::Vector2f *velocity, sf::Vector2f *correction);
 };
 
 #endif /* defined(__MyPongClone__CollisionManager__) */
