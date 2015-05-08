@@ -19,4 +19,12 @@ void Paddle::update(InputManager &im, float time) {
     if (im.isActionPressed("down")) {
         m_rect.move(0, m_speed * time);
     }
+    
+    if (m_rect.getPosition().y < 0) {
+        m_rect.setPosition(m_rect.getPosition().x, 0);
+    }
+    int yLimit = 600 - m_rect.getSize().y;
+    if (m_rect.getPosition().y > yLimit) {
+        m_rect.setPosition(m_rect.getPosition().x, yLimit);
+    }
 }
