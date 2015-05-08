@@ -24,7 +24,7 @@ public:
         m_rect.setPosition(bounds.left, bounds.top);
         m_rect.setFillColor(sf::Color::White);
         m_speed = sf::Vector2f();
-        const float v = 400;
+        const float v = 300;
         if (randomval == 0) {
             m_speed.x = v;
         }
@@ -46,6 +46,8 @@ public:
     sf::FloatRect * getBounds();
     sf::Vector2f * getSpeed();
     void move(sf::Vector2f *moveBy);
+    void resetPosition();
+    
     virtual void render(sf::RenderWindow &window);
     virtual void update(InputManager &im, float time);
 private:

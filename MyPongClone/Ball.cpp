@@ -34,6 +34,13 @@ void Ball::render(sf::RenderWindow &window) {
     window.draw(m_rect);
 }
 
+void Ball::resetPosition() {
+    bounds.left = 385;
+    bounds.top = 285;
+    changeXDirection();
+    m_rect.setPosition(bounds.left, bounds.top);
+}
+
 void Ball::update(InputManager &im, float time) {
     bounds.left += m_speed.x * time;
     bounds.top += m_speed.y * time;

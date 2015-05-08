@@ -14,6 +14,7 @@
 #include <ctime>
 #include <cstdlib>
 #include "InputManager.h"
+#include "Ball.h"
 
 class GameObject;
 
@@ -21,8 +22,11 @@ class Game {
 public:
     void initGame();
 private:
+    void checkForPoints(Ball *ball);
     std::vector<GameObject *> gameObjects;
     InputManager input;
+    int aiScore;
+    int playerScore;
 };
 
 #endif /* defined(__MyPongClone__Game__) */

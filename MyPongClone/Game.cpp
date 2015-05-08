@@ -12,9 +12,28 @@
 #include "Ball.h"
 #include "CollisionManager.h"
 
+void Game::checkForPoints(Ball *ball) {
+    bool ballOutOfBounds = false;
+    if (ball->getBounds()->left < 0) {
+        aiScore++;
+        ballOutOfBounds = true;
+    }
+    else if (ball->getBounds()->left > 800) {
+        playerScore++;
+        ballOutOfBounds = true;
+    }
+    
+    if (ballOutOfBounds) {
+        ball->resetPosition();
+    }
+}
+
 void Game::initGame() {
     srand(time(0));
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    
+    aiScore = 0;
+    playerScore = 0;
     
     Paddle p(10.0f, 300.0f);
     gameObjects.push_back(&p);
@@ -72,6 +91,8 @@ void Game::initGame() {
             collisionManger.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);
             
         }
+        
+        checkForPoints(&b);
         
         clock.restart();
         
