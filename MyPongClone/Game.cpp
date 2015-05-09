@@ -71,7 +71,7 @@ void Game::initGame() {
     aiScoreText.setString("AI: 0");
     aiScoreText.setPosition(700, 15);
     aiScoreText.setColor(sf::Color::White);
-    aiScoreText.setCharacterSize(22git);
+    aiScoreText.setCharacterSize(22);
     
     while (window.isOpen()) {
         sf::Event event;
