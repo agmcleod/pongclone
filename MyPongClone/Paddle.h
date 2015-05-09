@@ -22,6 +22,7 @@ public:
         m_rect.setPosition(bounds.left, bounds.top);
         m_rect.setFillColor(sf::Color::White);
         m_speed = 400.0f;
+        isAi = false;
     }
     sf::FloatRect * getBounds();
     virtual void render(sf::RenderWindow &window);

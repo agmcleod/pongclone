@@ -21,11 +21,13 @@ void Paddle::setAsAi() {
 }
 
 void Paddle::update(InputManager &im, float time) {
-    if (im.isActionPressed("up")) {
-        bounds.top -= m_speed * time;
-    }
-    if (im.isActionPressed("down")) {
-        bounds.top += m_speed * time;
+    if (!isAi) {
+        if (im.isActionPressed("up")) {
+            bounds.top -= m_speed * time;
+        }
+        if (im.isActionPressed("down")) {
+            bounds.top += m_speed * time;
+        }
     }
     
     if (bounds.top < 0) {
