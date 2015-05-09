@@ -16,6 +16,10 @@ void Paddle::render(sf::RenderWindow &window) {
     window.draw(m_rect);
 }
 
+void Paddle::setAsAi() {
+    isAi = true;
+}
+
 void Paddle::update(InputManager &im, float time) {
     if (im.isActionPressed("up")) {
         bounds.top -= m_speed * time;

@@ -25,11 +25,13 @@ public:
     }
     sf::FloatRect * getBounds();
     virtual void render(sf::RenderWindow &window);
+    void setAsAi();
     virtual void update(InputManager &im, float time);
 private:
     sf::FloatRect bounds;
     sf::RectangleShape m_rect;
     float m_speed;
+    bool isAi;
 };
 
 #endif /* defined(__MyPongClone__Paddle__) */

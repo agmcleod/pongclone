@@ -45,7 +45,12 @@ void Ball::update(InputManager &im, float time) {
     bounds.left += m_speed.x * time;
     bounds.top += m_speed.y * time;
     
-    if (bounds.top < 0 || bounds.top > 600 - bounds.height) {
+    if (bounds.top < 0) {
+        bounds.top = 1;
+        changeYDirection();
+    }
+    else if (bounds.top > 600 - bounds.height) {
+        bounds.top = 600 - bounds.height - 1;
         changeYDirection();
     }
     

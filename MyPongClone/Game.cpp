@@ -40,6 +40,9 @@ void Game::initGame() {
     Ball b;
     gameObjects.push_back(&b);
     
+    Paddle p2(770.0f, 300.0f);
+    gameObjects.push_back(&p2);
+    
     input = InputManager();
     
     sf::Clock clock = sf::Clock();
