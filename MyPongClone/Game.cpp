@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "Paddle.h"
 #include "Ball.h"
+#include "PaddleAIManager.h"
 #include "ResourcePath.hpp"
 
 void Game::checkForPoints(Ball *ball) {
@@ -19,7 +20,7 @@ void Game::checkForPoints(Ball *ball) {
         aiScore++;
         std::stringstream sstm;
         sstm << "AI: " << aiScore;
-        playerScoreText.setString(sstm.str());
+        aiScoreText.setString(sstm.str());
         ballOutOfBounds = true;
     }
     else if (ball->getBounds()->left > 800) {
@@ -73,6 +74,8 @@ void Game::initGame() {
     aiScoreText.setColor(sf::Color::White);
     aiScoreText.setCharacterSize(22);
     
+    PaddleAIManager paddleAI;
+    
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -101,6 +104,13 @@ void Game::initGame() {
         for (GameObject* object : gameObjects) {
             object->update(input, time);
         }
+        
+        b.update(input, time);
+        p.update(input, time);
+        
+        paddleAI.adjustPaddlePosition(b, p2, time);
+        p2.update(input, time);
+        
         
         runCollisionChecks(p, p2, b, intersection, correction);
         

@@ -12,6 +12,14 @@ sf::FloatRect * Paddle::getBounds() {
     return &bounds;
 }
 
+void Paddle::moveDown(float time) {
+    bounds.top += m_speed * time;
+}
+
+void Paddle::moveUp(float time) {
+    bounds.top -= m_speed * time;
+}
+
 void Paddle::render(sf::RenderWindow &window) {
     window.draw(m_rect);
 }
@@ -23,10 +31,10 @@ void Paddle::setAsAi() {
 void Paddle::update(InputManager &im, float time) {
     if (!isAi) {
         if (im.isActionPressed("up")) {
-            bounds.top -= m_speed * time;
+            moveUp(time);
         }
         if (im.isActionPressed("down")) {
-            bounds.top += m_speed * time;
+            moveDown(time);
         }
     }
     
