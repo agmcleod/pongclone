@@ -30,6 +30,10 @@ private:
     InputManager input;
     int aiScore;
     int playerScore;
+    sf::Text playerScoreText;
+    sf::Text aiScoreText;
+    sf::Font uiFont;
+
     CollisionManager collisionManager;
 };
 

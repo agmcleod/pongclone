@@ -24,6 +24,7 @@
 		9ABD7FC81AFAF91E00AB17B3 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FC61AFAF91E00AB17B3 /* InputManager.cpp */; };
 		9ABD7FCD1AFC4A2000AB17B3 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FCC1AFC4A2000AB17B3 /* Ball.cpp */; };
 		9ABD7FD01AFC4D0C00AB17B3 /* CollisionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FCE1AFC4D0C00AB17B3 /* CollisionManager.cpp */; };
+		9ABD7FD21AFE6F5F00AB17B3 /* MunroSmall.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD11AFE6F5F00AB17B3 /* MunroSmall.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		9ABD7FCC1AFC4A2000AB17B3 /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
 		9ABD7FCE1AFC4D0C00AB17B3 /* CollisionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionManager.cpp; sourceTree = "<group>"; };
 		9ABD7FCF1AFC4D0C00AB17B3 /* CollisionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionManager.h; sourceTree = "<group>"; };
+		9ABD7FD11AFE6F5F00AB17B3 /* MunroSmall.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MunroSmall.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		9A8364451AF9C02900541108 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9ABD7FD11AFE6F5F00AB17B3 /* MunroSmall.ttf */,
 				9A8364461AF9C02900541108 /* cute_image.jpg */,
 				9A8364481AF9C02900541108 /* nice_music.ogg */,
 				9A83644A1AF9C02900541108 /* sansation.ttf */,
@@ -195,6 +198,7 @@
 				9A83644D1AF9C02900541108 /* icon.png in Resources */,
 				9A83644B1AF9C02900541108 /* sansation.ttf in Resources */,
 				9A8364491AF9C02900541108 /* nice_music.ogg in Resources */,
+				9ABD7FD21AFE6F5F00AB17B3 /* MunroSmall.ttf in Resources */,
 				9A8364471AF9C02900541108 /* cute_image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

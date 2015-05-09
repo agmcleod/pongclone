@@ -7,18 +7,26 @@
 //
 
 #include <iostream>
+#include <sstream>
 #include "Game.h"
 #include "Paddle.h"
 #include "Ball.h"
+#include "ResourcePath.hpp"
 
 void Game::checkForPoints(Ball *ball) {
     bool ballOutOfBounds = false;
     if (ball->getBounds()->left < 0) {
         aiScore++;
+        std::stringstream sstm;
+        sstm << "AI: " << aiScore;
+        playerScoreText.setString(sstm.str());
         ballOutOfBounds = true;
     }
     else if (ball->getBounds()->left > 800) {
         playerScore++;
+        std::stringstream sstm;
+        sstm << "Player: " << playerScore;
+        playerScoreText.setString(sstm.str());
         ballOutOfBounds = true;
     }
     
@@ -30,6 +38,10 @@ void Game::checkForPoints(Ball *ball) {
 void Game::initGame() {
     srand(time(0));
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    
+    if (!uiFont.loadFromFile(resourcePath() + "MunroSmall.ttf")) {
+        EXIT_FAILURE;
+    }
     
     aiScore = 0;
     playerScore = 0;
@@ -48,6 +60,18 @@ void Game::initGame() {
     sf::Clock clock = sf::Clock();
     sf::FloatRect intersection;
     sf::Vector2f correction;
+    
+    playerScoreText.setFont(uiFont);
+    aiScoreText.setFont(uiFont);
+    
+    playerScoreText.setString("Player: 0");
+    playerScoreText.setPosition(40, 15);
+    playerScoreText.setColor(sf::Color::White);
+    playerScoreText.setCharacterSize(22);
+    aiScoreText.setString("AI: 0");
+    aiScoreText.setPosition(700, 15);
+    aiScoreText.setColor(sf::Color::White);
+    aiScoreText.setCharacterSize(22git);
     
     while (window.isOpen()) {
         sf::Event event;
@@ -87,6 +111,9 @@ void Game::initGame() {
         for (GameObject* object : gameObjects) {
             object->render(window);
         }
+        
+        window.draw(playerScoreText);
+        window.draw(aiScoreText);
         
         // Update the window
         window.display();
