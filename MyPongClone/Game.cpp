@@ -10,7 +10,6 @@
 #include "Game.h"
 #include "Paddle.h"
 #include "Ball.h"
-#include "CollisionManager.h"
 
 void Game::checkForPoints(Ball *ball) {
     bool ballOutOfBounds = false;
@@ -40,7 +39,8 @@ void Game::initGame() {
     Ball b;
     gameObjects.push_back(&b);
     
-    Paddle p2(770.0f, 300.0f);
+    Paddle p2(760.0f, 300.0f);
+    p2.setAsAi();
     gameObjects.push_back(&p2);
     
     input = InputManager();
@@ -48,8 +48,6 @@ void Game::initGame() {
     sf::Clock clock = sf::Clock();
     sf::FloatRect intersection;
     sf::Vector2f correction;
-    
-    CollisionManager collisionManger;
     
     while (window.isOpen()) {
         sf::Event event;
@@ -80,20 +78,7 @@ void Game::initGame() {
             object->update(input, time);
         }
         
-        sf::FloatRect *paddleBounds = p.getBounds();
-        sf::FloatRect *ballBounds = b.getBounds();
-        
-        if (paddleBounds->intersects(*ballBounds, intersection)) {
-            if (intersection.width > intersection.height) {
-                b.changeYDirection();
-            }
-            else {
-                b.changeXDirection();
-            }
-            
-            collisionManger.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);
-            
-        }
+        runCollisionChecks(p, p2, b, intersection, correction);
         
         checkForPoints(&b);
         
@@ -106,5 +91,35 @@ void Game::initGame() {
         // Update the window
         window.display();
 
+    }
+}
+
+void Game::runCollisionChecks(Paddle &p, Paddle &p2, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction) {
+    sf::FloatRect *paddleBounds = p.getBounds();
+    sf::FloatRect *ballBounds = b.getBounds();
+    
+    if (paddleBounds->intersects(*ballBounds, intersection)) {
+        if (intersection.width > intersection.height) {
+            b.changeYDirection();
+        }
+        else {
+            b.changeXDirection();
+        }
+        
+        collisionManager.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);
+        
+    }
+    
+    paddleBounds = p2.getBounds();
+    
+    if (paddleBounds->intersects(*ballBounds, intersection)) {
+        if (intersection.width > intersection.height) {
+            b.changeYDirection();
+        }
+        else {
+            b.changeXDirection();
+        }
+        
+        collisionManager.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);
     }
 }

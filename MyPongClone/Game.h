@@ -14,19 +14,23 @@
 #include <ctime>
 #include <cstdlib>
 #include "InputManager.h"
+#include "Paddle.h"
 #include "Ball.h"
+#include "CollisionManager.h"
 
 class GameObject;
 
 class Game {
 public:
     void initGame();
+    void runCollisionChecks(Paddle &p, Paddle &p2, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction);
 private:
     void checkForPoints(Ball *ball);
     std::vector<GameObject *> gameObjects;
     InputManager input;
     int aiScore;
     int playerScore;
+    CollisionManager collisionManager;
 };
 
 #endif /* defined(__MyPongClone__Game__) */
