@@ -28,7 +28,7 @@ void Paddle::setAsAi() {
     isAi = true;
 }
 
-void Paddle::update(InputManager &im, float time) {
+void Paddle::update(InputManager &im, const float time) {
     if (!isAi) {
         if (im.isActionPressed("up")) {
             moveUp(time);

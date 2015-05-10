@@ -34,25 +34,34 @@ void Ball::render(sf::RenderWindow &window) {
     window.draw(m_rect);
 }
 
+void Ball::resetMoveCountdown() {
+    moveCountdown = 0.5f;
+}
+
 void Ball::resetPosition() {
     bounds.left = 385;
     bounds.top = 285;
     changeXDirection();
     m_rect.setPosition(bounds.left, bounds.top);
+    resetMoveCountdown();
 }
 
-void Ball::update(InputManager &im, float time) {
-    bounds.left += m_speed.x * time;
-    bounds.top += m_speed.y * time;
-    
-    if (bounds.top < 0) {
-        bounds.top = 1;
-        changeYDirection();
+void Ball::update(InputManager &im, const float time) {
+    if (moveCountdown > 0.0f) {
+        moveCountdown -= time;
     }
-    else if (bounds.top > 600 - bounds.height) {
-        bounds.top = 600 - bounds.height - 1;
-        changeYDirection();
+    else {
+        bounds.left += m_speed.x * time;
+        bounds.top += m_speed.y * time;
+        
+        if (bounds.top < 0) {
+            bounds.top = 1;
+            changeYDirection();
+        }
+        else if (bounds.top > 600 - bounds.height) {
+            bounds.top = 600 - bounds.height - 1;
+            changeYDirection();
+        }
+        m_rect.setPosition(bounds.left, bounds.top);
     }
-    
-    m_rect.setPosition(bounds.left, bounds.top);
 }

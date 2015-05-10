@@ -16,7 +16,7 @@
 class GameObject {
 public:
     virtual void render(sf::RenderWindow &window) {};
-    virtual void update(InputManager &im, float time) {};
+    virtual void update(InputManager &im, const float time) {};
 };
 
 #endif /* defined(__MyPongClone__GameObject__) */

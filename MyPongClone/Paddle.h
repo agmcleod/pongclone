@@ -30,7 +30,7 @@ public:
     void setAsAi();
     virtual void render(sf::RenderWindow &window);
     
-    virtual void update(InputManager &im, float time);
+    virtual void update(InputManager &im, const float time);
 private:
     sf::FloatRect bounds;
     sf::RectangleShape m_rect;

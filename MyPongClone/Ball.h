@@ -39,6 +39,7 @@ public:
         else if(randomval == 1) {
             m_speed.y = -v;
         }
+        moveCountdown = 0.5f;
     }
     
     void changeXDirection();
@@ -47,13 +48,15 @@ public:
     sf::Vector2f * getSpeed();
     void move(sf::Vector2f *moveBy);
     void resetPosition();
+    void resetMoveCountdown();
     
     virtual void render(sf::RenderWindow &window);
-    virtual void update(InputManager &im, float time);
+    virtual void update(InputManager &im, const float time);
 private:
     sf::FloatRect bounds;
     sf::RectangleShape m_rect;
     sf::Vector2f m_speed;
+    float moveCountdown;
 };
 
 #endif /* defined(__MyPongClone__Ball__) */
