@@ -112,7 +112,8 @@ void Game::initGame() {
         p2.update(input, time);
         
         
-        runCollisionChecks(p, p2, b, intersection, correction);
+        runCollisionChecks(p, b, intersection, correction);
+        runCollisionChecks(p2, b, intersection, correction);
         
         checkForPoints(&b);
         
@@ -131,30 +132,19 @@ void Game::initGame() {
     }
 }
 
-void Game::runCollisionChecks(Paddle &p, Paddle &p2, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction) {
+void Game::runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction) {
     sf::FloatRect *paddleBounds = p.getBounds();
     sf::FloatRect *ballBounds = b.getBounds();
-    
     if (paddleBounds->intersects(*ballBounds, intersection)) {
         if (intersection.width > intersection.height) {
-            b.changeYDirection();
+            if ((ballBounds->top < paddleBounds->top && b.getSpeed()->y > 0) || (ballBounds->top > paddleBounds->top && b.getSpeed()->y < 0)) {
+                b.changeYDirection();
+            }
         }
         else {
-            b.changeXDirection();
-        }
-        
-        collisionManager.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);
-        
-    }
-    
-    paddleBounds = p2.getBounds();
-    
-    if (paddleBounds->intersects(*ballBounds, intersection)) {
-        if (intersection.width > intersection.height) {
-            b.changeYDirection();
-        }
-        else {
-            b.changeXDirection();
+            if ((ballBounds->left < paddleBounds->left && b.getSpeed()->x > 0) || (ballBounds->left > paddleBounds->left && b.getSpeed()->x < 0)) {
+                b.changeXDirection();
+            }
         }
         
         collisionManager.correctOverlap(ballBounds, &intersection, b.getSpeed(), &correction);

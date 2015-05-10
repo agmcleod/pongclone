@@ -23,7 +23,7 @@ class GameObject;
 class Game {
 public:
     void initGame();
-    void runCollisionChecks(Paddle &p, Paddle &p2, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction);
+    void runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction);
 private:
     void checkForPoints(Ball *ball);
     std::vector<GameObject *> gameObjects;
