@@ -23,7 +23,7 @@ void Game::initGame() {
     
     sf::Clock clock = sf::Clock();
     gameScreen.setUIFont(&uiFont);
-    gameScreen.start();git
+    gameScreen.start();
     
     input = InputManager();
     
