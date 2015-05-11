@@ -16,6 +16,10 @@ void TitleScreen::render(sf::RenderWindow &window) {
     window.draw(startText);
 }
 
+void TitleScreen::reset() {
+    buttonPressed = false;
+}
+
 void TitleScreen::setUIFont(sf::Font *f) {
     uiFont = f;
 }

@@ -23,7 +23,6 @@ void Game::initGame() {
     
     sf::Clock clock = sf::Clock();
     gameScreen.setUIFont(&uiFont);
-    gameScreen.start();
     
     titleScreen.setUIFont(&uiFont);
     titleScreen.start();
@@ -65,6 +64,11 @@ void Game::initGame() {
         
         if(currentScreen == &titleScreen && titleScreen.isButtonPressed()) {
             currentScreen = &gameScreen;
+            gameScreen.start();
+        }
+        else if(currentScreen == &gameScreen && gameScreen.isGameOver()) {
+            titleScreen.reset();
+            currentScreen = &titleScreen;
         }
         
         // Update the window

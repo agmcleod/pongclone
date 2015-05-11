@@ -18,28 +18,13 @@
 class Ball : public GameObject {
 public:
     Ball() {
-        int randomval = rand() % 2;
         bounds = sf::FloatRect(385, 285, 30, 30);
         m_rect = sf::RectangleShape(sf::Vector2f(bounds.width, bounds.height));
         m_rect.setPosition(bounds.left, bounds.top);
         m_rect.setFillColor(sf::Color::White);
         m_speed = sf::Vector2f();
-        const float v = 300;
-        if (randomval == 0) {
-            m_speed.x = v;
-        }
-        else if(randomval == 1) {
-            m_speed.x = -v;
-        }
-        
-        randomval = rand() % 2;
-        if (randomval == 0) {
-            m_speed.y = v;
-        }
-        else if(randomval == 1) {
-            m_speed.y = -v;
-        }
-        moveCountdown = 0.5f;
+        resetVelocity();
+        resetMoveCountdown();
     }
     
     void changeXDirection();
@@ -49,6 +34,7 @@ public:
     void move(sf::Vector2f *moveBy);
     void resetPosition();
     void resetMoveCountdown();
+    void resetVelocity();
     
     virtual void render(sf::RenderWindow &window);
     virtual void update(InputManager &im, const float time);

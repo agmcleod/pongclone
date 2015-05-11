@@ -35,7 +35,7 @@ void Ball::render(sf::RenderWindow &window) {
 }
 
 void Ball::resetMoveCountdown() {
-    moveCountdown = 0.5f;
+    moveCountdown = 0.8f;
 }
 
 void Ball::resetPosition() {
@@ -44,6 +44,26 @@ void Ball::resetPosition() {
     changeXDirection();
     m_rect.setPosition(bounds.left, bounds.top);
     resetMoveCountdown();
+    resetVelocity();
+}
+
+void Ball::resetVelocity() {
+    const float v = 450;
+    int randomval = rand() % 2;
+    if (randomval == 0) {
+        m_speed.x = v;
+    }
+    else if(randomval == 1) {
+        m_speed.x = -v;
+    }
+    
+    randomval = rand() % 2;
+    if (randomval == 0) {
+        m_speed.y = v;
+    }
+    else if(randomval == 1) {
+        m_speed.y = -v;
+    }
 }
 
 void Ball::update(InputManager &im, const float time) {

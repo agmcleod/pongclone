@@ -31,6 +31,10 @@ void GameScreen::checkForPoints(Ball *ball) {
     }
 }
 
+bool GameScreen::isGameOver() {
+    return aiScore >= 10 || playerScore >= 10;
+}
+
 void GameScreen::render(sf::RenderWindow &window) {
     for (GameObject* object : gameObjects) {
         object->render(window);
