@@ -25,6 +25,11 @@ void Game::initGame() {
     gameScreen.setUIFont(&uiFont);
     gameScreen.start();
     
+    titleScreen.setUIFont(&uiFont);
+    titleScreen.start();
+    
+    currentScreen = &titleScreen;
+    
     input = InputManager();
     
     while (window.isOpen()) {
@@ -52,11 +57,15 @@ void Game::initGame() {
         
         const float time = clock.getElapsedTime().asSeconds();
         
-        gameScreen.update(input, time);
+        currentScreen->update(input, time);
         
         clock.restart();
         
-        gameScreen.render(window);
+        currentScreen->render(window);
+        
+        if(currentScreen == &titleScreen && titleScreen.isButtonPressed()) {
+            currentScreen = &gameScreen;
+        }
         
         // Update the window
         window.display();

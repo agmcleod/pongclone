@@ -17,7 +17,7 @@
 #include "CollisionManager.h"
 #include "PaddleAIManager.h"
 
-class GameScreen : Screen {
+class GameScreen : public Screen {
 public:
     GameScreen() : player(Paddle(10.0f, 300.0f)), ai(Paddle(760.0f, 300.0f)), ball(Ball()) {}
     void runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction);

@@ -18,18 +18,20 @@
 #include "Ball.h"
 #include "CollisionManager.h"
 #include "GameScreen.h"
+#include "TitleScreen.h"
 
 class GameObject;
 
 class Game {
 public:
-    Game() : gameScreen(GameScreen()) {}
+    Game() : gameScreen(GameScreen()), titleScreen(TitleScreen()) {}
     void initGame();
 private:
     InputManager input;
     sf::Font uiFont;
     GameScreen gameScreen;
-    
+    TitleScreen titleScreen;
+    Screen *currentScreen;
 };
 
 #endif /* defined(__MyPongClone__Game__) */
