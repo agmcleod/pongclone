@@ -17,24 +17,19 @@
 #include "Paddle.h"
 #include "Ball.h"
 #include "CollisionManager.h"
+#include "GameScreen.h"
 
 class GameObject;
 
 class Game {
 public:
+    Game() : gameScreen(GameScreen()) {}
     void initGame();
-    void runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction);
 private:
-    void checkForPoints(Ball *ball);
-    std::vector<GameObject *> gameObjects;
     InputManager input;
-    int aiScore;
-    int playerScore;
-    sf::Text playerScoreText;
-    sf::Text aiScoreText;
     sf::Font uiFont;
-
-    CollisionManager collisionManager;
+    GameScreen gameScreen;
+    
 };
 
 #endif /* defined(__MyPongClone__Game__) */

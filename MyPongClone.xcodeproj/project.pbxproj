@@ -26,6 +26,8 @@
 		9ABD7FD01AFC4D0C00AB17B3 /* CollisionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FCE1AFC4D0C00AB17B3 /* CollisionManager.cpp */; };
 		9ABD7FD21AFE6F5F00AB17B3 /* MunroSmall.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD11AFE6F5F00AB17B3 /* MunroSmall.ttf */; };
 		9ABD7FD51AFEB3A500AB17B3 /* PaddleAIManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD31AFEB3A500AB17B3 /* PaddleAIManager.cpp */; };
+		9ABD7FD81B0024A600AB17B3 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD61B0024A600AB17B3 /* Screen.cpp */; };
+		9ABD7FDB1B0025F000AB17B3 /* GameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD91B0025F000AB17B3 /* GameScreen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,10 @@
 		9ABD7FD11AFE6F5F00AB17B3 /* MunroSmall.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MunroSmall.ttf; sourceTree = "<group>"; };
 		9ABD7FD31AFEB3A500AB17B3 /* PaddleAIManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PaddleAIManager.cpp; sourceTree = "<group>"; };
 		9ABD7FD41AFEB3A500AB17B3 /* PaddleAIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddleAIManager.h; sourceTree = "<group>"; };
+		9ABD7FD61B0024A600AB17B3 /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
+		9ABD7FD71B0024A600AB17B3 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
+		9ABD7FD91B0025F000AB17B3 /* GameScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScreen.cpp; path = ../GameScreen.cpp; sourceTree = "<group>"; };
+		9ABD7FDA1B0025F000AB17B3 /* GameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScreen.h; path = ../GameScreen.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,8 @@
 				9A83643E1AF9C02900541108 /* Supporting Files */,
 				9ABD7FBD1AFAE4B200AB17B3 /* Paddle.cpp */,
 				9ABD7FBE1AFAE4B200AB17B3 /* Paddle.h */,
+				9ABD7FD91B0025F000AB17B3 /* GameScreen.cpp */,
+				9ABD7FDA1B0025F000AB17B3 /* GameScreen.h */,
 				9ABD7FC01AFAEA2F00AB17B3 /* GameObject.cpp */,
 				9ABD7FC11AFAEA2F00AB17B3 /* GameObject.h */,
 				9ABD7FC31AFAED0400AB17B3 /* Game.cpp */,
@@ -119,6 +127,8 @@
 				9ABD7FCF1AFC4D0C00AB17B3 /* CollisionManager.h */,
 				9ABD7FD31AFEB3A500AB17B3 /* PaddleAIManager.cpp */,
 				9ABD7FD41AFEB3A500AB17B3 /* PaddleAIManager.h */,
+				9ABD7FD61B0024A600AB17B3 /* Screen.cpp */,
+				9ABD7FD71B0024A600AB17B3 /* Screen.h */,
 			);
 			path = MyPongClone;
 			sourceTree = "<group>";
@@ -236,10 +246,12 @@
 				9ABD7FC81AFAF91E00AB17B3 /* InputManager.cpp in Sources */,
 				9ABD7FD51AFEB3A500AB17B3 /* PaddleAIManager.cpp in Sources */,
 				9ABD7FBF1AFAE4B200AB17B3 /* Paddle.cpp in Sources */,
+				9ABD7FD81B0024A600AB17B3 /* Screen.cpp in Sources */,
 				9ABD7FD01AFC4D0C00AB17B3 /* CollisionManager.cpp in Sources */,
 				9A8364411AF9C02900541108 /* ResourcePath.mm in Sources */,
 				9ABD7FC51AFAED0400AB17B3 /* Game.cpp in Sources */,
 				9ABD7FCD1AFC4A2000AB17B3 /* Ball.cpp in Sources */,
+				9ABD7FDB1B0025F000AB17B3 /* GameScreen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
