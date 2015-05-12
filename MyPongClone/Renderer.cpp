@@ -13,7 +13,6 @@ void Renderer::bindAttributes(GLuint& shaderProgram) {
     glEnableVertexAttribArray(posAttrib);
     glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
     
-    
     GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
     glEnableVertexAttribArray(colAttrib);
     glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
@@ -37,7 +36,7 @@ void Renderer::flush() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void Renderer::setupElementBuffer(GLuint& ebo) {
+void Renderer::setupElementBuffer() {
     GLuint elements[] = {
         0, 1, 2,
         2, 3, 0

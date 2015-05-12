@@ -25,15 +25,13 @@ public:
         setupShader();
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
-        
         glGenBuffers(1, &vbo);
-        
         glGenBuffers(1, &ebo);
         bindAttributes(shaderProgram);
-        setupElementBuffer(ebo);
 
         GLuint tex;
         glGenTextures(1, &tex);
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, tex);
         GLuint color[] = { 255, 255, 255, 255 };
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, color);
@@ -49,7 +47,7 @@ public:
     void bindAttributes(GLuint &shaderProgram);
     void cleanUp();
     void flush();
-    void setupElementBuffer(GLuint &ebo);
+    void setupElementBuffer();
     void setupVertices(GLfloat (&vertices)[28]);
     GLuint setupShader();
 private:

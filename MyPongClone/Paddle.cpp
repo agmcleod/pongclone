@@ -23,12 +23,13 @@ void Paddle::moveUp(float time) {
 void Paddle::render(Renderer &renderer) {
     GLfloat vertices[28] = {
         //  Position(2) Color(3)     Texcoords(2)
-        bounds.left, bounds.top, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, // Top-left
-        bounds.left + bounds.width, bounds.top, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
+        bounds.left, bounds.top, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, // Top-left
+        bounds.left + bounds.width, bounds.top, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, // Top-right
         bounds.left + bounds.width, bounds.top + bounds.height, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
-        bounds.left, bounds.top + bounds.height, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
+        bounds.left, bounds.top + bounds.height, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
     };
     renderer.setupVertices(vertices);
+    renderer.setupElementBuffer();
 }
 
 void Paddle::setAsAi() {
