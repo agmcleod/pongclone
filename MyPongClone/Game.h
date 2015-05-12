@@ -10,9 +10,9 @@
 #define __MyPongClone__Game__
 
 #include <stdio.h>
-#include <SFML/Graphics.hpp>
 #include <ctime>
 #include <cstdlib>
+#include "Renderer.h"
 #include "InputManager.h"
 #include "Paddle.h"
 #include "Ball.h"

@@ -14,10 +14,6 @@
 // method resourcePath() from ResourcePath.hpp
 //
 
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-// Here is a small helper for you ! Have a look.
-
 #include "Game.h"
 
 int main(int, char const**)

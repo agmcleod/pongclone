@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <ctime>
+#include "Renderer.h"
 #include "Game.h"
 #include "Paddle.h"
 #include "Ball.h"
@@ -15,7 +16,7 @@
 
 void Game::initGame() {
     srand(time(0));
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::Window window(sf::VideoMode(800, 600), "SFML window");
     
     if (!uiFont.loadFromFile(resourcePath() + "MunroSmall.ttf")) {
         EXIT_FAILURE;
@@ -27,9 +28,14 @@ void Game::initGame() {
     titleScreen.setUIFont(&uiFont);
     titleScreen.start();
     
-    currentScreen = &titleScreen;
+    currentScreen = &gameScreen;
     
     input = InputManager();
+    
+    glewExperimental = GL_TRUE;
+    glewInit();
+    
+    Renderer renderer(800.0f, 600.0f);
     
     while (window.isOpen()) {
         sf::Event event;
@@ -52,15 +58,14 @@ void Game::initGame() {
             }
         }
         
-        window.clear();
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         const float time = clock.getElapsedTime().asSeconds();
         
         currentScreen->update(input, time);
         
         clock.restart();
-        
-        currentScreen->render(window);
         
         if(currentScreen == &titleScreen && titleScreen.isButtonPressed()) {
             currentScreen = &gameScreen;
