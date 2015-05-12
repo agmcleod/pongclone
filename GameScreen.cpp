@@ -35,13 +35,14 @@ bool GameScreen::isGameOver() {
     return aiScore >= 10 || playerScore >= 10;
 }
 
-void GameScreen::render(sf::RenderWindow &window) {
+void GameScreen::render(Renderer &renderer) {
     for (GameObject* object : gameObjects) {
-        object->render(window);
+        object->render(renderer);
+        renderer.flush();
     }
-    ai.render(window);
-    window.draw(playerScoreText);
-    window.draw(aiScoreText);
+    // ai.render(Renderer &renderer);
+    // window.draw(playerScoreText);
+    // window.draw(aiScoreText);
 }
 
 void GameScreen::runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction) {
@@ -98,8 +99,8 @@ void GameScreen::update(InputManager &input, float time) {
         object->update(input, time);
     }
     
-    paddleAI.adjustPaddlePosition(ball, ai, time);
-    ai.update(input, time);
+    //paddleAI.adjustPaddlePosition(ball, ai, time);
+    //ai.update(input, time);
     
     sf::Vector2f correction(0, 0);
     sf::FloatRect intersection;

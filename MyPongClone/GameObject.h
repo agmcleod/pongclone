@@ -10,12 +10,13 @@
 #define __MyPongClone__GameObject__
 
 #include <stdio.h>
+#include "Renderer.h"
 #include <SFML/Graphics.hpp>
 #include "InputManager.h"
 
 class GameObject {
 public:
-    virtual void render(sf::RenderWindow &window) {};
+    virtual void render(Renderer &renderer) {};
     virtual void update(InputManager &im, const float time) {};
 };
 

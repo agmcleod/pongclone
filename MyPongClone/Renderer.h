@@ -29,6 +29,16 @@ public:
         glGenBuffers(1, &vbo);
         
         glGenBuffers(1, &ebo);
+        bindAttributes(shaderProgram);
+        setupElementBuffer(ebo);
+
+        GLuint tex;
+        glGenTextures(1, &tex);
+        glBindTexture(GL_TEXTURE_2D, tex);
+        GLuint color[] = { 255, 255, 255, 255 };
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, color);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        
         
         glViewport(0, 0, width, height);
         projection = glm::ortho(0.0f, width, height, 0.0f);
@@ -36,10 +46,11 @@ public:
         glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(projection));
     }
     
-    void bindAttributes(GLuint& shaderProgram);
+    void bindAttributes(GLuint &shaderProgram);
     void cleanUp();
-    void setupElementBuffer(GLuint& ebo);
-    void setupVertices(GLuint& vbo);
+    void flush();
+    void setupElementBuffer(GLuint &ebo);
+    void setupVertices(GLfloat (&vertices)[28]);
     GLuint setupShader();
 private:
     sf::Shader shader;

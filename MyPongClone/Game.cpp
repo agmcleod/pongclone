@@ -16,7 +16,13 @@
 
 void Game::initGame() {
     srand(time(0));
-    sf::Window window(sf::VideoMode(800, 600), "SFML window");
+    sf::ContextSettings settings;
+    settings.minorVersion = 2;
+    settings.majorVersion = 3;
+    settings.depthBits = 24;
+    settings.stencilBits = 8;
+    settings.antialiasingLevel = 0;
+    sf::Window window(sf::VideoMode(800, 600), "Pong", sf::Style::Default, settings);
     
     if (!uiFont.loadFromFile(resourcePath() + "MunroSmall.ttf")) {
         EXIT_FAILURE;
@@ -46,6 +52,7 @@ void Game::initGame() {
             
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Escape) {
+                    renderer.cleanUp();
                     window.close();
                 }
                 else {
@@ -64,8 +71,10 @@ void Game::initGame() {
         const float time = clock.getElapsedTime().asSeconds();
         
         currentScreen->update(input, time);
-        
+
         clock.restart();
+        
+        currentScreen->render(renderer);
         
         if(currentScreen == &titleScreen && titleScreen.isButtonPressed()) {
             currentScreen = &gameScreen;

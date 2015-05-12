@@ -33,6 +33,10 @@ void Renderer::cleanUp() {
     glDeleteVertexArrays(1, &vao);
 }
 
+void Renderer::flush() {
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
 void Renderer::setupElementBuffer(GLuint& ebo) {
     GLuint elements[] = {
         0, 1, 2,
@@ -42,14 +46,8 @@ void Renderer::setupElementBuffer(GLuint& ebo) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 }
-void Renderer::setupVertices(GLuint& vbo) {
-    GLfloat vertices[] = {
-        //  Position   Color             Texcoords
-        0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
-        200.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
-        200.0f, 200.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
-        0.0f, 200.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
-    };
+
+void Renderer::setupVertices(GLfloat (&vertices)[28]) {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }

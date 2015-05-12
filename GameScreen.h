@@ -25,7 +25,7 @@ public:
     void checkForPoints(Ball *ball);
     void setUIFont(sf::Font *uiFont);
     
-    virtual void render(sf::RenderWindow &window);
+    virtual void render(Renderer &renderer);
     virtual void start();
     virtual void update(InputManager &input, float time);
 private:

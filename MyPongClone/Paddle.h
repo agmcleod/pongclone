@@ -28,7 +28,7 @@ public:
     void moveDown(float time);
     void moveUp(float time);
     void setAsAi();
-    virtual void render(sf::RenderWindow &window);
+    virtual void render(Renderer &renderer);
     
     virtual void update(InputManager &im, const float time);
 private:

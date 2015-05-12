@@ -10,12 +10,13 @@
 #define __MyPongClone__Screen__
 
 #include <stdio.h>
+#include "Renderer.h"
 #include <SFML/Graphics.hpp>
 #include "InputManager.h"
 
 class Screen {
 public:
-    virtual void render(sf::RenderWindow &window) {};
+    virtual void render(Renderer &renderer) {};
     virtual void start() {};
     virtual void update(InputManager &input, float time) {};
 };
