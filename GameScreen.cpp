@@ -71,7 +71,7 @@ void GameScreen::start() {
     aiScore = 0;
     playerScore = 0;
     
-    gameObjects.clear();git 
+    gameObjects.clear();
     
     gameObjects.push_back(&player);
     gameObjects.push_back(&ball);
