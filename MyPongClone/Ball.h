@@ -13,7 +13,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
-
+#include "Renderer.h"
 
 class Ball : public GameObject {
 public:
@@ -36,7 +36,7 @@ public:
     void resetMoveCountdown();
     void resetVelocity();
     
-    virtual void render(sf::RenderWindow &window);
+    virtual void render(Renderer &renderer);
     virtual void update(InputManager &im, const float time);
 private:
     sf::FloatRect bounds;

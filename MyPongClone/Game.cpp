@@ -32,7 +32,8 @@ void Game::initGame() {
     gameScreen.setUIFont(&uiFont);
     
     titleScreen.setUIFont(&uiFont);
-    titleScreen.start();
+    // titleScreen.start();
+    gameScreen.start();
     
     currentScreen = &gameScreen;
     
@@ -68,13 +69,13 @@ void Game::initGame() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
-        glActiveTexture(GL_TEXTURE0);
-        
         const float time = clock.getElapsedTime().asSeconds();
         
         currentScreen->update(input, time);
 
         clock.restart();
+        
+        renderer.startRender();
         
         currentScreen->render(renderer);
         

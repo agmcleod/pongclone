@@ -29,9 +29,7 @@ public:
         setupElementBuffer();
         bindAttributes(shaderProgram);
 
-        GLuint tex;
         glGenTextures(1, &tex);
-        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, tex);
         GLuint color[] = { 255, 255, 255, 255 };
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, color);
@@ -40,25 +38,23 @@ public:
         
         glViewport(0, 0, width, height);
         projection = glm::ortho(0.0f, width, height, 0.0f);
-        view = glm::mat4();
         GLint uniTrans = glGetUniformLocation(shaderProgram, "uMatrix");
         glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(projection));
     }
     
     void bindAttributes(GLuint &shaderProgram);
     void cleanUp();
-    void flush();
     void render(sf::FloatRect &bounds);
     void setupElementBuffer();
     void setupVertices();
-    void startRender();
     GLuint setupShader();
+    void startRender();
 private:
     sf::Shader shader;
     glm::mat4 projection;
-    glm::mat4 view;
     GLuint fragmentShader;
     GLuint shaderProgram;
+    GLuint tex;
     GLuint vao;
     GLuint vbo;
     GLuint vertexShader;

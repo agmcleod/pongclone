@@ -38,9 +38,8 @@ bool GameScreen::isGameOver() {
 void GameScreen::render(Renderer &renderer) {
     for (GameObject* object : gameObjects) {
         object->render(renderer);
-        renderer.flush();
     }
-    // ai.render(Renderer &renderer);
+    ai.render(renderer);
     // window.draw(playerScoreText);
     // window.draw(aiScoreText);
 }
@@ -99,8 +98,8 @@ void GameScreen::update(InputManager &input, float time) {
         object->update(input, time);
     }
     
-    //paddleAI.adjustPaddlePosition(ball, ai, time);
-    //ai.update(input, time);
+    paddleAI.adjustPaddlePosition(ball, ai, time);
+    ai.update(input, time);
     
     sf::Vector2f correction(0, 0);
     sf::FloatRect intersection;

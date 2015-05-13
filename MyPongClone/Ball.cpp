@@ -30,8 +30,8 @@ void Ball::move(sf::Vector2f *moveBy) {
     m_rect.setPosition(bounds.left, bounds.top);
 }
 
-void Ball::render(sf::RenderWindow &window) {
-    window.draw(m_rect);
+void Ball::render(Renderer &renderer) {
+    renderer.render(bounds);
 }
 
 void Ball::resetMoveCountdown() {

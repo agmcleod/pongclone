@@ -34,15 +34,12 @@ void Renderer::cleanUp() {
     glDeleteVertexArrays(1, &vao);
 }
 
-void Renderer::flush() {
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-}
-
 void Renderer::render(sf::FloatRect &bounds) {
-    view = glm::mat4();
-    view = glm::translate(view, glm::vec3(bounds.left, bounds.top, 0.0f));
-    GLint uniTrans = glGetUniformLocation(shaderProgram, "viewMatrix");
-    glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(view));
+    glm::mat4 model;
+    model = glm::translate(model, glm::vec3(bounds.left, bounds.top, 0.0f));
+    model = glm::scale(model, glm::vec3(bounds.width, bounds.height, 0.0f));
+    GLint modelMat = glGetUniformLocation(shaderProgram, "mMatrix");
+    glUniformMatrix4fv(modelMat, 1, GL_FALSE, glm::value_ptr(model));
     
     glBindVertexArray(vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -72,7 +69,7 @@ void Renderer::setupVertices() {
         0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
     };
     
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
 GLuint Renderer::setupShader() {
@@ -84,11 +81,11 @@ GLuint Renderer::setupShader() {
     out vec3 Color;\n\
     out vec2 Texcoord;\n\
     uniform mat4 uMatrix;\n\
-    uniform mat3 viewMatrix;\n\
+    uniform mat4 mMatrix;\n\
     void main() {\n\
     Color = color;\n\
     Texcoord = texcoord;\n\
-    gl_Position = uMatrix * mat4(viewMatrix) * vec4(position.xy, 0.0, 1.0);\n\
+    gl_Position = uMatrix * mMatrix * vec4(position.xy, 0.0, 1.0);\n\
     }";
     
     const GLchar *fragment =
@@ -150,5 +147,6 @@ GLuint Renderer::setupShader() {
 }
 
 void Renderer::startRender() {
-    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, tex);
 }
