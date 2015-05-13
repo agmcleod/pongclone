@@ -20,6 +20,8 @@ void Renderer::bindAttributes(GLuint& shaderProgram) {
     GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
     glEnableVertexAttribArray(texAttrib);
     glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
+    
+    glBindVertexArray(0);
 }
 
 void Renderer::cleanUp() {
@@ -36,6 +38,17 @@ void Renderer::flush() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
+void Renderer::render(sf::FloatRect &bounds) {
+    view = glm::mat4();
+    view = glm::translate(view, glm::vec3(bounds.left, bounds.top, 0.0f));
+    GLint uniTrans = glGetUniformLocation(shaderProgram, "viewMatrix");
+    glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(view));
+    
+    glBindVertexArray(vao);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+}
+
 void Renderer::setupElementBuffer() {
     GLuint elements[] = {
         0, 1, 2,
@@ -46,8 +59,19 @@ void Renderer::setupElementBuffer() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 }
 
-void Renderer::setupVertices(GLfloat (&vertices)[28]) {
+void Renderer::setupVertices() {
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    
+    GLfloat vertices[] = {
+        //  Position(2) Color(3)     Texcoords(2)
+        0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, // Top-left
+        1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, // Top-right
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
+        0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f  // Bottom-left
+    };
+    
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }
 
@@ -60,10 +84,11 @@ GLuint Renderer::setupShader() {
     out vec3 Color;\n\
     out vec2 Texcoord;\n\
     uniform mat4 uMatrix;\n\
+    uniform mat3 viewMatrix;\n\
     void main() {\n\
     Color = color;\n\
     Texcoord = texcoord;\n\
-    gl_Position = uMatrix * vec4(position.xy, 0.0, 1.0);\n\
+    gl_Position = uMatrix * mat4(viewMatrix) * vec4(position.xy, 0.0, 1.0);\n\
     }";
     
     const GLchar *fragment =
@@ -111,7 +136,19 @@ GLuint Renderer::setupShader() {
     glBindFragDataLocation(shaderProgram, 0, "outColor");
     
     glLinkProgram(shaderProgram);
+    
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &status);
+    if (status != GL_TRUE) {
+        char buffer[512];
+        glGetProgramInfoLog(shaderProgram, 512, NULL, buffer);
+        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << buffer << std::endl;
+    }
+    
     glUseProgram(shaderProgram);
     
     return shaderProgram;
+}
+
+void Renderer::startRender() {
+    
 }

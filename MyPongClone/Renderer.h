@@ -23,10 +23,10 @@ class Renderer {
 public:
     Renderer(float width, float height) {
         setupShader();
-        glGenVertexArrays(1, &vao);
-        glBindVertexArray(vao);
         glGenBuffers(1, &vbo);
         glGenBuffers(1, &ebo);
+        setupVertices();
+        setupElementBuffer();
         bindAttributes(shaderProgram);
 
         GLuint tex;
@@ -40,6 +40,7 @@ public:
         
         glViewport(0, 0, width, height);
         projection = glm::ortho(0.0f, width, height, 0.0f);
+        view = glm::mat4();
         GLint uniTrans = glGetUniformLocation(shaderProgram, "uMatrix");
         glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(projection));
     }
@@ -47,12 +48,15 @@ public:
     void bindAttributes(GLuint &shaderProgram);
     void cleanUp();
     void flush();
+    void render(sf::FloatRect &bounds);
     void setupElementBuffer();
-    void setupVertices(GLfloat (&vertices)[28]);
+    void setupVertices();
+    void startRender();
     GLuint setupShader();
 private:
     sf::Shader shader;
     glm::mat4 projection;
+    glm::mat4 view;
     GLuint fragmentShader;
     GLuint shaderProgram;
     GLuint vao;
