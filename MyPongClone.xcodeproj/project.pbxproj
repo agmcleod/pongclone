@@ -33,6 +33,7 @@
 		9ABD7FD81B0024A600AB17B3 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD61B0024A600AB17B3 /* Screen.cpp */; };
 		9ABD7FDB1B0025F000AB17B3 /* GameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FD91B0025F000AB17B3 /* GameScreen.cpp */; };
 		9ABD7FDE1B00440F00AB17B3 /* TitleScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD7FDC1B00440F00AB17B3 /* TitleScreen.cpp */; };
+		9AE9FCB31B0442C000E1D746 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCB21B0442C000E1D746 /* libfreetype.6.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		9ABD7FDA1B0025F000AB17B3 /* GameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScreen.h; path = ../GameScreen.h; sourceTree = "<group>"; };
 		9ABD7FDC1B00440F00AB17B3 /* TitleScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleScreen.cpp; sourceTree = "<group>"; };
 		9ABD7FDD1B00440F00AB17B3 /* TitleScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScreen.h; sourceTree = "<group>"; };
+		9AE9FCB21B0442C000E1D746 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../../usr/local/Cellar/freetype/2.5.5/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE9FCB31B0442C000E1D746 /* libfreetype.6.dylib in Frameworks */,
 				9A2813691B02B46F008B1455 /* libGLEW.1.11.0.dylib in Frameworks */,
 				9A2813601B02A923008B1455 /* OpenGL.framework in Frameworks */,
 				9A8364581AF9C06300541108 /* sfml-audio.framework in Frameworks */,
@@ -99,6 +102,7 @@
 		9A8364311AF9C02900541108 = {
 			isa = PBXGroup;
 			children = (
+				9AE9FCB21B0442C000E1D746 /* libfreetype.6.dylib */,
 				9A2813681B02B46F008B1455 /* libGLEW.1.11.0.dylib */,
 				9A2813641B02ABDF008B1455 /* glm */,
 				9A28135F1B02A923008B1455 /* OpenGL.framework */,
@@ -389,14 +393,21 @@
 		9A8364511AF9C02900541108 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+					/usr/local/include/freetype2,
 				);
 				INFOPLIST_FILE = "MyPongClone/MyPongClone-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.11.0/lib,
+					/usr/local/Cellar/freetype/2.5.5/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
@@ -409,14 +420,21 @@
 		9A8364521AF9C02900541108 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+					/usr/local/include/freetype2,
 				);
 				INFOPLIST_FILE = "MyPongClone/MyPongClone-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.11.0/lib,
+					/usr/local/Cellar/freetype/2.5.5/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";

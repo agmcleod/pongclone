@@ -15,14 +15,14 @@ void GameScreen::checkForPoints(Ball *ball) {
         aiScore++;
         std::stringstream sstm;
         sstm << "AI: " << aiScore;
-        aiScoreText.setString(sstm.str());
+        aiScoreText = sstm.str();
         ballOutOfBounds = true;
     }
     else if (ball->getBounds()->left > 800) {
         playerScore++;
         std::stringstream sstm;
         sstm << "Player: " << playerScore;
-        playerScoreText.setString(sstm.str());
+        playerScoreText = sstm.str();
         ballOutOfBounds = true;
     }
     
@@ -40,8 +40,8 @@ void GameScreen::render(Renderer &renderer) {
         object->render(renderer);
     }
     ai.render(renderer);
-    // window.draw(playerScoreText);
-    // window.draw(aiScoreText);
+    renderer.text(playerScoreText, 40, 15, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
+    renderer.text(aiScoreText, 700, 15, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 void GameScreen::runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction) {
@@ -63,13 +63,11 @@ void GameScreen::runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersect
     }
 }
 
-void GameScreen::setUIFont(sf::Font *f) {
-    uiFont = f;
-}
-
 void GameScreen::start() {
     aiScore = 0;
     playerScore = 0;
+    playerScoreText = "Player: 0";
+    aiScoreText = "AI: 0";
     
     gameObjects.clear();
     
@@ -79,18 +77,6 @@ void GameScreen::start() {
     
     sf::FloatRect intersection;
     sf::Vector2f correction;
-    
-    playerScoreText.setString("Player: 0");
-    playerScoreText.setPosition(40, 15);
-    playerScoreText.setColor(sf::Color::White);
-    playerScoreText.setCharacterSize(22);
-    aiScoreText.setString("AI: 0");
-    aiScoreText.setPosition(700, 15);
-    aiScoreText.setColor(sf::Color::White);
-    aiScoreText.setCharacterSize(22);
-    
-    playerScoreText.setFont(*uiFont);
-    aiScoreText.setFont(*uiFont);
 }
 
 void GameScreen::update(InputManager &input, float time) {

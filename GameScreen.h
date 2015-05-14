@@ -23,7 +23,6 @@ public:
     bool isGameOver();
     void runCollisionChecks(Paddle &p, Ball &b, sf::FloatRect &intersection, sf::Vector2f &correction);
     void checkForPoints(Ball *ball);
-    void setUIFont(sf::Font *uiFont);
     
     virtual void render(Renderer &renderer);
     virtual void start();
@@ -32,12 +31,11 @@ private:
     int aiScore;
     Paddle ai;
     Ball ball;
-    sf::Text aiScoreText;
+    std::string aiScoreText;
     std::vector<GameObject *> gameObjects;
     int playerScore;
-    sf::Font *uiFont;
     Paddle player;
-    sf::Text playerScoreText;
+    std::string playerScoreText;
     PaddleAIManager paddleAI;
     CollisionManager collisionManager;
 };

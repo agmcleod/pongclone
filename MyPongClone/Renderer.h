@@ -12,6 +12,8 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <stdio.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
 #include <glm/mat4x4.hpp>
@@ -19,15 +21,31 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
+struct Character {
+    GLuint TextureID;   // ID handle of the glyph texture
+    glm::ivec2 Size;    // Size of glyph
+    glm::ivec2 Bearing;  // Offset from baseline to left/top of glyph
+    GLuint Advance;    // Horizontal offset to advance to next glyph
+};
+
 class Renderer {
 public:
     Renderer(float width, float height) {
         setupShader();
         glGenBuffers(1, &vbo);
         glGenBuffers(1, &ebo);
-        setupVertices();
-        setupElementBuffer();
-        bindAttributes(shaderProgram);
+        setupMainBuffer();
+        
+        glGenVertexArrays(1, &tVAO);
+        glGenBuffers(1, &tVBO);
+        
+        glBindVertexArray(tVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, tVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
 
         glGenTextures(1, &tex);
         glBindTexture(GL_TEXTURE_2D, tex);
@@ -46,16 +64,18 @@ public:
         glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(projection));
     }
     
-    void bindAttributes(GLuint &shaderProgram);
     void cleanUp();
     void render(sf::FloatRect &bounds);
-    void setupElementBuffer();
-    void setupVertices();
-    GLuint setupShader();
+    void setupMainBuffer();
+    void setupTextCharacters();
+    void setupShader();
     void startRender();
+    void text(std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 private:
-    sf::Shader shader;
+    void compileProgram(const GLchar *vertex, const GLchar *fragment, GLuint &vertexShader, GLuint &fragmentShader, GLuint &shaderProgram);
+    
     glm::mat4 projection;
+    std::map<GLchar, Character> Characters;
     GLuint fragmentShader;
     GLuint shaderProgram;
     GLuint tex;
@@ -63,6 +83,15 @@ private:
     GLuint vbo;
     GLuint vertexShader;
     GLuint ebo;
+    
+    // text buffers
+    GLuint tVAO;
+    GLuint tVBO;
+    
+    // text shader
+    GLuint textProgram;
+    GLuint textFragShader;
+    GLuint textVertShader;
 };
 
 #endif /* defined(__MyPongClone__Renderer__) */

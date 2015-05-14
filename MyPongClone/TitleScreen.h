@@ -12,19 +12,17 @@
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include "Screen.h"
+#include "Renderer.h"
 
 class TitleScreen : public Screen {
 public:
-    void setUIFont(sf::Font *uiFont);
     bool isButtonPressed();
     void reset();
-    virtual void render(sf::RenderWindow &window);
+    virtual void render(Renderer &renderer);
     virtual void start();
     virtual void update(InputManager &input, float time);
 private:
     bool buttonPressed;
-    sf::Text startText;
-    sf::Font *uiFont;
 };
 
 #endif /* defined(__MyPongClone__TitleScreen__) */

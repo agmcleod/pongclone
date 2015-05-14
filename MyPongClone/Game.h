@@ -28,7 +28,6 @@ public:
     void initGame();
 private:
     InputManager input;
-    sf::Font uiFont;
     GameScreen gameScreen;
     TitleScreen titleScreen;
     Screen *currentScreen;

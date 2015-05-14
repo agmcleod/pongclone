@@ -24,14 +24,7 @@ void Game::initGame() {
     settings.antialiasingLevel = 0;
     sf::Window window(sf::VideoMode(800, 600), "Pong", sf::Style::Default, settings);
     
-    if (!uiFont.loadFromFile(resourcePath() + "MunroSmall.ttf")) {
-        EXIT_FAILURE;
-    }
-    
     sf::Clock clock = sf::Clock();
-    gameScreen.setUIFont(&uiFont);
-    
-    titleScreen.setUIFont(&uiFont);
     // titleScreen.start();
     gameScreen.start();
     
