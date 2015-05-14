@@ -213,7 +213,6 @@ void Renderer::setupShader() {
     }";
 
     compileProgram(vertex, fragment, vertexShader, fragmentShader, shaderProgram);
-    glUseProgram(shaderProgram);
 
     const GLchar *textVertex =
     "#version 330 core\n\
