@@ -72,7 +72,6 @@ void Renderer::compileProgram(const GLchar *vertex, const GLchar *fragment, GLui
 
 void Renderer::render(sf::FloatRect &bounds) {
     glm::mat4 model;
-    glUseProgram(shaderProgram);
     model = glm::translate(model, glm::vec3(bounds.left, bounds.top, 0.0f));
     model = glm::scale(model, glm::vec3(bounds.width, bounds.height, 0.0f));
     GLint modelMat = glGetUniformLocation(shaderProgram, "mMatrix");
@@ -132,13 +131,16 @@ void Renderer::setupTextCharacters() {
 
     // Load font as face
     FT_Face face;
-    if (FT_New_Face(ft, "fonts/arial.ttf", 0, &face)) {
+    if (FT_New_Face(ft, (resourcePath() + "MunroSmall.ttf").c_str(), 0, &face)) {
         std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
     }
 
 
     // Set size to load glyphs as
     FT_Set_Pixel_Sizes(face, 0, 48);
+    
+    glUseProgram(textProgram);
+    glUniformMatrix4fv(glGetUniformLocation(textProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -194,12 +196,12 @@ void Renderer::setupShader() {
     in vec2 texcoord;\n\
     out vec3 Color;\n\
     out vec2 Texcoord;\n\
-    uniform mat4 uMatrix;\n\
+    uniform mat4 projection;\n\
     uniform mat4 mMatrix;\n\
     void main() {\n\
       Color = color;\n\
       Texcoord = texcoord;\n\
-      gl_Position = uMatrix * mMatrix * vec4(position.xy, 0.0, 1.0);\n\
+      gl_Position = projection * mMatrix * vec4(position.xy, 0.0, 1.0);\n\
     }";
 
     const GLchar *fragment =
@@ -245,6 +247,8 @@ void Renderer::setupShader() {
 }
 
 void Renderer::startRender() {
+    glUseProgram(shaderProgram);
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uMatrix"), 1, GL_FALSE, glm::value_ptr(projection));
     glActiveTexture(GL_TEXTURE0);
 }
 
@@ -254,6 +258,7 @@ void Renderer::text(std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::
     // Activate corresponding render state
     glUniformMatrix4fv(glGetUniformLocation(textProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glUniform3f(glGetUniformLocation(textProgram, "textColor"), color.x, color.y, color.z);
+    glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(tVAO);
 
     // Iterate through all characters

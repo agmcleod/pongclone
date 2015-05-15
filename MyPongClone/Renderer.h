@@ -20,6 +20,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include "ResourcePath.hpp"
 
 struct Character {
     GLuint TextureID;   // ID handle of the glyph texture
@@ -31,7 +32,12 @@ struct Character {
 class Renderer {
 public:
     Renderer(float width, float height) {
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         setupShader();
+        
+        setupTextCharacters();
+        
         glGenBuffers(1, &vbo);
         glGenBuffers(1, &ebo);
         setupMainBuffer();
@@ -60,8 +66,8 @@ public:
         
         glViewport(0, 0, width, height);
         projection = glm::ortho(0.0f, width, height, 0.0f);
-        GLint uniTrans = glGetUniformLocation(shaderProgram, "uMatrix");
-        glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(projection));
+        //glUseProgram(shaderProgram);
+        //glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     }
     
     void cleanUp();

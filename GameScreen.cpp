@@ -36,10 +36,10 @@ bool GameScreen::isGameOver() {
 }
 
 void GameScreen::render(Renderer &renderer) {
-    for (GameObject* object : gameObjects) {
-        object->render(renderer);
-    }
-    ai.render(renderer);
+    //for (GameObject* object : gameObjects) {
+    //    object->render(renderer);
+    //}
+    //ai.render(renderer);
     renderer.text(playerScoreText, 40, 15, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
     renderer.text(aiScoreText, 700, 15, 0.5f, glm::vec3(1.0f, 1.0f, 1.0f));
 }
