@@ -25,10 +25,10 @@ void Game::initGame() {
     sf::Window window(sf::VideoMode(800, 600), "Pong", sf::Style::Default, settings);
     
     sf::Clock clock = sf::Clock();
-    // titleScreen.start();
-    gameScreen.start();
+    titleScreen.start();
+    // gameScreen.start();
     
-    currentScreen = &gameScreen;
+    currentScreen = &titleScreen;
     
     input = InputManager();
     

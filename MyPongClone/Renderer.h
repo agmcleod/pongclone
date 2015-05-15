@@ -32,10 +32,11 @@ struct Character {
 class Renderer {
 public:
     Renderer(float width, float height) {
+        glViewport(0, 0, width, height);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         setupShader();
-        
+        projection = glm::ortho(0.0f, width, height, 0.0f);
         setupTextCharacters();
         
         glGenBuffers(1, &vbo);
@@ -64,10 +65,8 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         
         
-        glViewport(0, 0, width, height);
-        projection = glm::ortho(0.0f, width, height, 0.0f);
-        //glUseProgram(shaderProgram);
-        //glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUseProgram(shaderProgram);
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     }
     
     void cleanUp();

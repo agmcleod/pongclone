@@ -186,6 +186,8 @@ void Renderer::setupTextCharacters() {
     // Destroy FreeType once we're finished
     FT_Done_Face(face);
     FT_Done_FreeType(ft);
+    
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 }
 
 void Renderer::setupShader() {
@@ -256,7 +258,6 @@ void Renderer::text(std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::
 {
     glUseProgram(textProgram);
     // Activate corresponding render state
-    glUniformMatrix4fv(glGetUniformLocation(textProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glUniform3f(glGetUniformLocation(textProgram, "textColor"), color.x, color.y, color.z);
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(tVAO);
@@ -274,18 +275,18 @@ void Renderer::text(std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::
         GLfloat h = ch.Size.y * scale;
         // Update VBO for each character
         GLfloat vertices[6][4] = {
-            { xpos,     ypos + h,   0.0, 0.0 },
-            { xpos,     ypos,       0.0, 1.0 },
-            { xpos + w, ypos,       1.0, 1.0 },
+            { xpos,     ypos + h,   0.0, 1.0 },
+            { xpos,     ypos,       0.0, 0.0 },
+            { xpos + w, ypos,       1.0, 0.0 },
 
-            { xpos,     ypos + h,   0.0, 0.0 },
-            { xpos + w, ypos,       1.0, 1.0 },
-            { xpos + w, ypos + h,   1.0, 0.0 }
+            { xpos,     ypos + h,   0.0, 1.0 },
+            { xpos + w, ypos,       1.0, 0.0 },
+            { xpos + w, ypos + h,   1.0, 1.0 }
         };
         // Render glyph texture over quad
         glBindTexture(GL_TEXTURE_2D, ch.TextureID);
         // Update content of VBO memory
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, tVBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
